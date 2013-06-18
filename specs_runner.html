@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gilded Rose Spec Runner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vendor/mocha.css" />
+  </head>
+  <body>
+
+    <div id="mocha"></div>
+    <script src="./vendor/chai.js"></script>
+    <script src="./vendor/mocha.js"></script>
+    <script>
+      mocha.setup('bdd')
+      var expect = chai.expect
+    </script>
+    <script src="./lib/gilded_rose.js"></script>
+    <script src="./specs/gilded_rose_spec.js"></script>
+    <script>
+        mocha.run();
+    </script>
+  </body>
+</html>

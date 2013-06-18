@@ -1,0 +1,29 @@
+{
+  "name": "coding_dojo_1",
+  "version": "0.0.0",
+  "description": "First Coding Dojo: Gilded Rose",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --todo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dbroeglin/coding_dojo_1"
+  },
+  "keywords": [
+    "coding",
+    "dojo",
+    "1",
+    "gilded",
+    "rose"
+  ],
+  "author": "http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/",
+  "license": "Creative Commons",
+  "bugs": {
+    "url": "https://github.com/dbroeglin/coding_dojo_1/issues"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  }
+}
