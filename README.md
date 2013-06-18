@@ -20,7 +20,7 @@ new category of items.
 First an introduction to our system:
 
   1. All items have a *sell_in* value which denotes the number of days we have to
-    sell the item
+   sell the item
   2. All items have a *quality* value which denotes how valuable the item is
   3. At the end of each day our system lowers both values for every item
 
@@ -31,11 +31,11 @@ Pretty simple, right? Well this is where it gets interesting:
   3. "Aged Brie" actually increases in *quality* the older it gets
   4. The *quality* of an item is never more than 50
   5. "Sulfuras", being a legendary item, never has to be sold nor does it
-    decrease in *quality*
+   decrease in *quality*
   6. "Backstage passes", like aged brie, increases in *quality* as it's *sell_in*
-    value decreases; *quality* increases by 2 when there are 10 days or less
-    and by 3 when there are 5 days or less but *quality* drops to 0 after the
-    concert
+   value decreases; *quality* increases by 2 when there are 10 days or less
+   and by 3 when there are 5 days or less but *quality* drops to 0 after the
+   concert
 
 We have recently signed a supplier of conjured items. This requires an update
 to our system:
@@ -58,4 +58,25 @@ Sources:
 
 ## Quick setup
 
-If you only use the browser spec runner you do not need anything
+### Using the browser based spec runner
+
+You do not need anything except cloning the repository:
+
+    git clone https://github.com/dbroeglin/coding_dojo_1.git
+
+### Using the node based spec runner (command line)
+
+Checkout the *node* branch and install:
+
+    git clone -b node https://github.com/dbroeglin/coding_dojo_1.git
+
+Go to http://nodejs.org/ ; Download the package and install it.
+
+Go to the cloned repository:
+
+    npm install -g mocha
+    npm install
+
+Run the specs with the following command:
+
+    mocha -u bdd -w -r chai lib/ specs/
