@@ -1,39 +1,39 @@
+// shared rules
+
+function shouldNotDegradeBelowZero(fn) {
+  describe("if quality is 0", function() {
+    beforeEach(function() {
+      this.item.quality = 0;
+    });
+
+    it("should not degrade anymore", function() {
+      fn(this.item);
+      expect(this.item).to.sell_in(0).and.have.quality(0);
+    });
+
+    it("should not degrade anymore after sell date", function() {
+      this.item.sell_in = 0;
+      fn(this.item);
+      expect(this.item).to.sell_in(-1).and.have.quality(0);
+    });
+  });
+}
+
+function shouldNotAllowQualityHigherThanFifty(fn) {
+  it("should truncate quality from 51 to 50", function() {
+    this.item.quality = 51;
+    fn(this.item);
+    expect(this.item.quality).to.be.below(51);
+  });
+
+  it("should truncate quality from 60 to 50", function() {
+    this.item.quality = 60;
+    fn(this.item);
+    expect(this.item.quality).to.be.below(51);
+  });
+}
+
 describe("Gilded Rose", function() {
-
-  function shouldNotDegradeBelowZero(fn) {
-    describe("if quality is 0", function() {
-      beforeEach(function() {
-        this.item.quality = 0;
-      });
-
-      it("should not degrade anymore", function() {
-        fn(this.item);
-        expect(this.item).to.sell_in(0).and.have.quality(0);
-      });
-
-      it("should not degrade anymore after sell date", function() {
-        this.item.sell_in = 0;
-        fn(this.item);
-        expect(this.item).to.sell_in(-1).and.have.quality(0);
-      });
-    });
-  }
-
-  function shouldNotAllowQualityHigherThanFifty(fn) {
-    it("should truncate quality from 51 to 50", function() {
-      this.item.quality = 51;
-      fn(this.item);
-      expect(this.item.quality).to.be.below(51);
-    });
-
-    it("should truncate quality from 60 to 50", function() {
-      this.item.quality = 60;
-      fn(this.item);
-      expect(this.item.quality).to.be.below(51);
-    });
-  }
-
-
   describe("+5 Dexterity Vest (standard)", function() {
     beforeEach(function () {
       this.item = new Item('+5 Dexterity Vest', 1, 0);
@@ -51,7 +51,7 @@ describe("Gilded Rose", function() {
         update_standard_item(this.item);
         expect(this.item).to.sell_in(0).and.have.quality(49);
       });
-    });    
+    });
   });
 
   describe("Aged Brie", function() {
@@ -94,39 +94,6 @@ describe("Gilded Rose", function() {
     });
   });
 
-  describe("Mana cake", function() {
-    beforeEach(function() {
-      this.item = new Item('Conjured Mana Cake', 1, 0);
-    });
-
-    shouldNotDegradeBelowZero(update_conjured_mana_cake);		
-    shouldNotAllowQualityHigherThanFifty(update_conjured_mana_cake);
-
-    describe("if quality at 50", function() {
-      beforeEach(function() {
-        this.item.quality = 50;
-      });
-
-      it("should degrage quality at normal rate", function() {
-        this.item.sell_in = 1;
-        update_conjured_mana_cake(this.item);
-        expect(this.item).to.sell_in(0).and.have.quality(48);
-      });
-
-      it("should degrage quality twice as fast as usual (2 x 2) after sell date", function() {
-        this.item.sell_in = 0;
-        update_conjured_mana_cake(this.item);
-        expect(this.item).to.sell_in(-1).and.have.quality(46);
-      })
-
-      it("should degrage quality twice as fast as usual (2 x 2) 1 day after sell date", function() {
-        this.item.sell_in = -1;
-        update_conjured_mana_cake(this.item);
-        expect(this.item).to.sell_in(-2).and.have.quality(46);
-      })
-    });
-  });
-
   describe("Sulfuras (legendary)", function() {
     beforeEach(function() {
       this.item = new Item('Sulfuras, Hand of Ragnaros', 1, 30);
@@ -160,6 +127,69 @@ describe("Gilded Rose", function() {
     });
   });
 
+  describe("Mana cake", function() {
+    beforeEach(function() {
+      this.item = new Item('Conjured Mana Cake', 1, 0);
+    });
+
+    shouldNotDegradeBelowZero(update_conjured_mana_cake);		
+    shouldNotAllowQualityHigherThanFifty(update_conjured_mana_cake);
+
+    describe("if quality at 50", function() {
+      beforeEach(function() {
+        this.item.quality = 50;
+      });
+
+      it("should degrage quality at normal rate", function() {
+        this.item.sell_in = 1;
+        update_conjured_mana_cake(this.item);
+        expect(this.item).to.sell_in(0).and.have.quality(48);
+      });
+
+      it("should degrage quality twice as fast as usual (2 x 2) after sell date", function() {
+        this.item.sell_in = 0;
+        update_conjured_mana_cake(this.item);
+        expect(this.item).to.sell_in(-1).and.have.quality(46);
+      })
+
+      it("should degrage quality twice as fast as usual (2 x 2) 1 day after sell date", function() {
+        this.item.sell_in = -1;
+        update_conjured_mana_cake(this.item);
+        expect(this.item).to.sell_in(-2).and.have.quality(46);
+      })
+    });
+  });
+
+  describe("Backstage passes to a TAFKAL80ETC concert", function() {
+    beforeEach(function() {
+      this.item = new Item('Backstage passes to a TAFKAL80ETC concert', 1, 0);
+    });
+
+    shouldNotAllowQualityHigherThanFifty(update_backstage_passes);
+
+    it("should drop quality to 0 after selling date", function() {
+      this.item.sell_in = -1;
+      update_backstage_passes(this.item);
+      expect(this.item).to.sell_in(-2).and.have.quality(0);
+    });
+
+    describe("if quality at 50", function() {
+      beforeEach(function() {
+        this.item.quality = 50;
+      });
+
+      it("should not increase higher than 50 before selling date", function() {
+        update_backstage_passes(this.item);
+        expect(this.item.quality).to.be.below(51);
+      });
+
+      it("should drop to 0 after selling date", function() {
+        this.item.sell_in = -1;
+        update_backstage_passes(this.item);
+        expect(this.item).to.have.quality(0);
+      });
+    });
+  });
 
   describe("Goblin's list", function() {
     describe("After 1 day", function() {

@@ -8,8 +8,8 @@ chai.use(function (_chai, utils) {
     new Assertion(obj).to.be.instanceof(Item);
     this.assert(
       obj.sell_in === sell_in,
-      msg_prefix +' #{this} to sell_in #{exp} but got #{act}',
-      msg_prefix +' #{this} to not sell in #{exp}',
+      msg_prefix +' to sell_in #{exp} but got #{act}',
+      msg_prefix +' to not sell in #{exp}',
       sell_in,
       obj.sell_in
       );
@@ -22,8 +22,8 @@ chai.use(function (_chai, utils) {
     new Assertion(obj).to.be.instanceof(Item);
     this.assert(
       obj.quality === quality,
-      msg_prefix +' #{this} to be of quality #{exp} but got #{act}',
-      msg_prefix +' #{this} to not be of quality #{exp}',
+      msg_prefix +' to be of quality #{exp} but got #{act}',
+      msg_prefix +' to not be of quality #{exp}',
       quality,
       obj.quality
       );
