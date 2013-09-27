@@ -3,6 +3,30 @@
 This Dojo revolves around extending the code provided in the current repository 
 through refactoring and TDD.
 
+## Quick setup
+
+### Using the browser based spec runner
+
+You do not need anything except cloning the repository:
+
+    git clone https://github.com/dbroeglin/coding_dojo_1.git
+
+### Using the node based spec runner (command line)
+
+Checkout the *node* branch and install:
+
+    git clone -b node https://github.com/dbroeglin/coding_dojo_1.git
+
+Go to http://nodejs.org/ ; Download the package and install it.
+
+Go to the cloned repository:
+
+    npm install -g mocha
+
+Run the specs with the following command:
+
+    mocha -u bdd -w -r chai lib/ specs/
+
 ## The specification
 
 Hi and welcome to team Gilded Rose.
@@ -55,28 +79,3 @@ never alters.
 Sources:
   http://www.iamnotmyself.com/2011/02/13/RefactorThisTheGildedRoseKata.aspx
   https://github.com/professor/GildedRose
-
-## Quick setup
-
-### Using the browser based spec runner
-
-You do not need anything except cloning the repository:
-
-    git clone https://github.com/dbroeglin/coding_dojo_1.git
-
-### Using the node based spec runner (command line)
-
-Checkout the *node* branch and install:
-
-    git clone -b node https://github.com/dbroeglin/coding_dojo_1.git
-
-Go to http://nodejs.org/ ; Download the package and install it.
-
-Go to the cloned repository:
-
-    npm install -g mocha
-    npm install
-
-Run the specs with the following command:
-
-    mocha -u bdd -w -r chai lib/ specs/
